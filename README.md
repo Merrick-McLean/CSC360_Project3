@@ -8,7 +8,7 @@ Any of these parts can be run by calling the following line (assuming the argume
 - part3: ./diskget FILE.img /sub_dir/FILE.txt TARGET_FILE.txt
 - part4: ./diskput FILE.img FILE.txt /sub_dir/TARGET_FILE.txt
 
-Part 1: diskinfo will return about the target disk img file. 
+Part 1: diskinfo will return info about the target disk img file. 
 diskinfo uses fread to read the given argument file into the super structure. Since the struct already has defined sizes it automatically fits. This will provide the Superblock information by accessign the struct attributes. In order to get the FAT info, a forloop is used (looping ince for each file system block) and fseeks to the current indexed fat entry (i*4 bytes, where i is the index), the program reads the 4 bytes into a unsigned integer of size 4 bytes (uint32_t) and properly convert it (network to host long). The program then checks if it is 0, 1, or other and increment one of 3 counts respecively. Then all superblock information and the 3 counts are printed.
 
 Part 2: Disklist will list all files and subdirectories in the target location of the disk img file.
